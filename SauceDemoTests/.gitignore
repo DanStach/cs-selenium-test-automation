@@ -480,3 +480,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Apple macOS operating system, .DS_Store is a file that stores custom attributes of its containing folder
+.DS_Store
