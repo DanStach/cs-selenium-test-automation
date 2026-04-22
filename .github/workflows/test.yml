@@ -1,23 +1,4 @@
-name: Run Tests
-
-on:
-  workflow_dispatch: # This enables the "Run workflow" button
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
-
-    - name: Restore dependencies
-      run: dotnet restore
+name: Run Selenium Tests
 
 on:
   workflow_dispatch:
