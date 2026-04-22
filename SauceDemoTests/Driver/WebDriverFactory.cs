@@ -23,7 +23,11 @@ namespace SauceDemoTests.Drivers
             options.AddArgument("--start-maximized");
 
             if (TestConfig.Headless)
+            {
                 options.AddArgument("--headless=new");
+                options.AddArgument("--no-sandbox");
+                options.AddArgument("--disable-gpu");
+            }
 
             return new ChromeDriver(options); // Selenium Manager handles driver
         }

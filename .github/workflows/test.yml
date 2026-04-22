@@ -11,10 +11,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install Chrome dependencies
+    - name: Install Chrome
       run: |
         sudo apt-get update
-        sudo apt-get install -y chromium-browser chromium-chromedriver
+        sudo apt-get install -y google-chrome-stable
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -23,14 +23,6 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-
-    - name: Build
-      run: dotnet build --no-restore
-
-    - name: Run tests
-      env:
-        TestSettings__Headless: true
-      run: dotnet test --logger "console;verbosity=detailed" --no-build --no-restore
 
     - name: Build
       run: dotnet build --no-restore
