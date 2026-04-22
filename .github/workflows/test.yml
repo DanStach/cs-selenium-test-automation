@@ -17,7 +17,39 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
+      run: dotnet restorename: Run Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Chrome dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser chromium-chromedriver
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
       run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Run tests
+      env:
+        TestSettings__Headless: true
+      run: dotnet test --logger "console;verbosity=detailed" --no-build --no-restore
 
     - name: Build
       run: dotnet build --no-restore
